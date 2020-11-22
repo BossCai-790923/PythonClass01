@@ -26,4 +26,9 @@ coins_topup = int(input("Total coins to top up: ")) # convert str to int
 # total_coins = total_coins + coins_topup
 total_coins += coins_topup
 
-print(f'Now you have coins: {total_coins}. You can continue to play the game.')
+coins_requirement = 300
+
+if total_coins < coins_requirement:
+    print(f"You still do not have enough coins, you need to top up extra {coins_requirement - total_coins} coins")
+else:
+    print(f'Now you have coins: {total_coins}. You can continue to play the game.')
