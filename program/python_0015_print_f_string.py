@@ -14,7 +14,7 @@ print('My name is ' + last_name + ', ' + first_name + ' ' + last_name) #My name 
 #[Solution 3] Python f string
 # IMPORTANCE!! ------------------------------------------------------------------
 # 1) Have an f at the beginning
-# 2) Curly braces containing expressions that will be replaced with their values
+# 2) Curly braces containing variables or expressions that will be replaced with their values
 # -------------------------------------------------------------------------------
 print(f'My name is {last_name}, {first_name} {last_name}') #My name is Bond, James Bond
 
