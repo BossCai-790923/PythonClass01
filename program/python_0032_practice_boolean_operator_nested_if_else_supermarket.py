@@ -63,7 +63,40 @@ if product_name == 'beef' or product_name == 'pork' or product_name == 'tomato':
     print(f'{product_name} : ${unit_price} * {total_weight} = ${total_price}')
 
 elif product_name == 'apple' or product_name == 'orange':
-    pass
+
+    # 1st step
+    # ask the customer, how many you buy
+    total_count = int(input("Total quantity: "))
+
+    if product_name == 'apple':
+
+        # 2nd step
+        # calculate price
+        # the key here is to group apples into 5, see how many groups it has, how many are left
+        group_count = total_count // 5
+        single_count = total_count % 5
+
+        group_price = 5
+        single_price = 1.6
+
+    else:
+
+        # 2nd step
+        # calculate price
+        # the key here is to group apples into 5, see how many groups it has, how many are left
+        group_count = total_count // 3
+        single_count = total_count % 3
+
+        group_price = 5
+        single_price = 2
+
+    group_price_total = group_price * group_count
+    single_price_total = single_price * single_count
+    total_price = group_price_total + single_price_total
+
+    # 3rd step
+    # Tell customer
+    print(f'{product_name} : ${total_price}')
 
 else:
     print(f'Unrecognized product : {product_name}')
