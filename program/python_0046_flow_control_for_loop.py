@@ -32,3 +32,17 @@ for i in range(5, 10):
 print("range(100, 100) doesn't generate any number. So it prints nothing.")
 for i in range(100, 100):
     print(i)
+
+
+print("-------------------------------------------")
+
+# IMPORTANT!! -------------------------------------------
+# [range style 3]
+# range(start, stop, step) generates number in range[start, stop), with step
+# -------------------------------------------------------
+
+print("range(10,-10,-2) generates number 10,8,6,4,2,0,-2,-4,-6,-8")
+for i in range(10, -10, -2):
+    print(i)
+
+print("-------------------------------------------")
