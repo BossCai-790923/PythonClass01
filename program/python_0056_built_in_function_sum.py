@@ -1,4 +1,4 @@
-# Requirment: calculate the sum from 1 to 100
+# Requirement: calculate the sum from 1 to 100
 
 # Solution 1 - use simple for range loop
 sum_value_for_solution1 = 0
