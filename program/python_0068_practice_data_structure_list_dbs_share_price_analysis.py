@@ -594,7 +594,7 @@ For example:
     [20210113, 27.0, 27.1, 26.72, 26.76, 3740200],
     [20210114, 26.9, 26.99, 26.77, 26.99, 2521200],
 
-Requirment:
+Requirement:
 1) Calculate SMA_5 for each day, the initial 4 days do not have enough previous CLOSE prices, so there is no SMA_5 for them.
 2) Append the SMA_5 value to the end of day_trade_data list.
 3) Loop from the beginning:
