@@ -1,55 +1,20 @@
-year = int(input("Enter year: "))
-month = input("Enter month: ")
-day = int(input("Enter day: "))
+num_list = [int(input("Enter a number: "))]
 
-if year % 100 == 0 and year % 400 == 0:
-    leap_year = True
-elif year % 100 == 0 and year % 4 == 0:
-    leap_year = False
-elif year % 4 == 0:
-    leap_year = True
-else:
-    leap_year = False
-
-if leap_year is True:
-    days_of_year = 366
-    feb_days = 29
-else:
-    days_of_year = 365
-    feb_days = 28
-
-if month == "Jan" or month == "Mar" or month == "May" or month == "Jul" or month == "Aug" or month == "Oct" or month == "Dec":
-    days_of_month = 31
-elif month == "Feb":
-    if leap_year is True:
-        days_of_month = 29
-    else:
-        days_of_month = 28
-else:
-    days_of_month = 30
-
-days_before_in_month = day - 1
-if month == "Jan":
-    print(days_before_in_month)
-if month == "Feb":
-    print(days_before_in_month + 31)
-if month == "Mar":
-    print(days_before_in_month + feb_days + 31)
-if month == "Apr":
-    print(days_before_in_month + feb_days + 31 + 31)
-if month == "May":
-    print(days_before_in_month + feb_days + 31 + 31 + 30)
-if month == "Jun":
-    print(days_before_in_month + feb_days + 31 + 31 + 30 + 31)
-if month == "Jul":
-    print(days_before_in_month + feb_days + 31 + 31 + 30 + 31 + 30)
-if month == "Aug":
-    print(days_before_in_month + feb_days + 31 + 31 + 30 + 31 + 30 + 31)
-if month == "Sep":
-    print(days_before_in_month + feb_days + 31 + 31 + 30 + 31 + 30 + 31 + 31)
-if month == "Oct":
-    print(days_before_in_month + feb_days + 31 + 31 + 30 + 31 + 30 + 31 + 31 + 30)
-if month == "Nov":
-    print(days_before_in_month + feb_days + 31 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31)
-if month == "Dec":
-    print(days_before_in_month + feb_days + 31 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31 + 30)
+while True:
+    num = int(input("Enter a number: "))
+    num_list.append(num)
+    while True:
+        num_index = num_list.index(num)
+        if num < num_list[num_index-1]:
+            print(num)
+            num_list.remove(num)
+            num_list.insert(num_index-1, num)
+        else:
+            print("b")
+            break
+        num_index = num_list.index(num)
+        if num_index == 0:
+            break
+        if num > num_list[num_index-1]:
+            break
+    print(num_list)
