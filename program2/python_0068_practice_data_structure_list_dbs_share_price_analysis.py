@@ -575,7 +575,7 @@ from pprint import pprint
 # the 2nd pprint is the method name
 # -------------------------------------------------------------------------
 
-pprint(trade_data)
+# pprint(trade_data)
 
 '''
 Task introduction:
@@ -601,3 +601,136 @@ Requirement:
    As soon as CLOSE price of the day goes up above SMA_5, print TRADE_DATE / CLOSE / SMA_5 of the day.
    As soon as CLOSE price of the day goes down below SMA_5, print TRADE_DATE / CLOSE / SMA_5 of the day.
 '''
+
+'''
+logic:
+
+Observation 1:
+SMA_5 is the arithmetic mean of the past 5 days' CLOSE.
+
+Conclusion 1:
+I need to collect the past 4 days' CLOSE + today's CLOSE, then calculate the arithmetic mean.
+To do list, I can simply put the CLOSE into a list - close_price_list
+Then sum(close_price_list) / 5 is the SMA_5 value.
+
+
+Observation 2:
+Because I need to calculate the SMA_5 for each list in list trade_data
+
+Conclusion 2:
+So I need to put the core logic in a loop.
+When len(close_price_list) < 5, for example, the first 4 days, then I cannot calculate SMA_5
+When I move on to next day, I need to remove the 1st day's CLOSE, append the new day's CLOSE.
+So that len(close_price_list) is ALWAYS 5.
+    1) append(today's CLOSE) to add today's CLOSE
+    2) pop(0) to remove the 1st day's CLOSE
+    3) sma5 = sum(close_price_list) / 5
+'''
+
+# this variable holds the past 5 days' CLOSE prices
+close_price_list = []
+
+# As I need to calculate the SMA_5 for all day_trade_data, so I need to loop one by one
+for day_trade_data in trade_data:
+
+    #Step 1) append today's CLOSE to close_price_list
+    close_price_list.append(day_trade_data[4]) # CLOSE price is at index 4 of day_trade_data list. For example: [20210114, 26.9, 26.99, 26.77, 26.99, 2521200]
+
+    #Step 2) I need to check whether close_price_list's size is 5 or not
+    if len(close_price_list) == 5:
+
+        #Step 2.1) calculate the arithmetic mean of the last 5 days' CLOSE
+        sma5 = round(sum(close_price_list) / 5, 2)
+
+        #Step 2.2) append the sma5 to the end of today's day_trade_data
+        day_trade_data.append(sma5)
+
+        #Step 2.3) Remove the 1st CLOSE price in close_price_list, as it is useless for tomorrow's SMA5.
+        #After this step, the len(close_price_list) becomes 4 again.
+        close_price_list.pop(0)
+
+
+
+# pprint(trade_data)
+
+
+'''
+Till now, the 1st and 2nd requirement are done!
+
+The 3rd requirement is to print the CLOSE/SMA5 Crossing Signal.
+What is Crossing signal? 
+When CLOSE price goes from below to above SMA5, that is a 'Golden Cross'.
+When CLOSE price goes from above to below SMA5, that is a 'Death Cross'.
+Reference: https://www.investopedia.com/terms/g/goldencross.asp
+
+Observation 1:
+I need to find all Crossing signals - Golden Cross / Death Cross
+
+Conclusion 1:
+I need to loop from day 1 till last day
+
+Observation 2:
+Crossing signal appears when CLOSE changes its position from below SMA5 to above SMA5, or vice versa.
+
+Conclusion 2:
+So I need 2 str variables - close_position_old vs close_position_new, their value can be 'ABOVE' or 'BELOW' or ''(for the first 4 days)
+So I can compare the 2 variables, then I can generate Crossing signals.
+'''
+
+close_position_old = ''
+close_position_new = ''
+
+for day_trade_data in trade_data:
+
+    # the first 4 days don't have SMA5, so they only have 6 values in the list -  [20201002, 20.33, 20.41, 20.04, 20.22, 3550700, 20.03],
+    if len(day_trade_data) != 7:
+        continue
+
+    # Here is a sample data [20201002, 20.33, 20.41, 20.04, 20.22, 3550700, 20.03],
+    # day_trade_data[4] is CLOSE price
+    # day_trade_data[6] is SMA5
+    # So I need to compare day_trade_data[4] vs day_trade_data[6]
+
+    # Now I am going to change close_position_new to remember where CLOSE is, is 'BELOW' SMA5 or 'ABOVE' SMA5.
+    # Before that, I need to assign close_position_new to close_position_old
+    close_position_old = close_position_new
+
+    if day_trade_data[4] < day_trade_data[6]:
+        close_position_new = 'BELOW'
+    elif day_trade_data[4] > day_trade_data[6]:
+        close_position_new = 'ABOVE'
+
+    if close_position_old == 'BELOW' and close_position_new == 'ABOVE':
+        day_trade_data.append('Golden Cross')
+        print(f"CLOSE price {day_trade_data[4]} goes ABOVE SMA5 {day_trade_data[6]} on date {day_trade_data[0]}. BUY!")
+    elif close_position_old == 'ABOVE' and close_position_new == 'BELOW':
+        day_trade_data.append('Death Cross')
+        print(f"CLOSE price {day_trade_data[4]} goes BELOW SMA5 {day_trade_data[6]} on date {day_trade_data[0]}. SELL!")
+
+pprint(trade_data)
+
+
+
+# Let's assume initially, we have 0 dollars and 1000 shares of DBS stock.
+cash_amount = 0
+stock_shares = 1000
+total_asset = cash_amount + stock_shares * trade_data[0][4]
+print(f"Today: {trade_data[0][0]}. Total asset: {total_asset:.2f}. Cash amount: ${cash_amount:.2f}, stock: {stock_shares} shares.")
+
+
+for day_trade_data in trade_data:
+
+    if len(day_trade_data) != 8:
+        continue
+
+    if "Golden Cross" == day_trade_data[7]: # Let's buy stock
+        stock_shares += 1000
+        cash_amount -= day_trade_data[4] * 1000
+
+    elif "Death Cross" == day_trade_data[7]: # Let's sell stock
+        stock_shares -= 1000
+        cash_amount += day_trade_data[4] * 1000
+
+    total_asset = cash_amount + stock_shares * day_trade_data[4]
+    print(f"Today: {day_trade_data[0]}. Total asset: {total_asset:.2f}. Cash amount: ${cash_amount:.2f}, stock: {stock_shares} shares.")
+

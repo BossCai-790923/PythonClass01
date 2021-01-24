@@ -1,4 +1,4 @@
-num_list = [int(input("Enter a number: "))]
+num_list = [int(input("List Size: "))]
 
 while True:
     num = int(input("Enter a number: "))
