@@ -1,24 +1,19 @@
-stocks = [[20201230, 25.25, 25.37, 25.11, 25.23, 3715400],
-          [20210104, 25.13, 25.34, 25.01, 25.34, 2156614],
-          [20210105, 25.22, 25.35, 25.09, 25.35, 2076800],
-          [20210106, 25.3, 25.35, 25.07, 25.18, 3807600],
-          [20210107, 25.68, 26.18, 25.63, 26.05, 11938600],
-          [20210108, 26.55, 27.47, 26.5, 27.42, 14510800],
-          [20210111, 27.39, 27.39, 26.92, 26.92, 5528700],
-          [20210112, 26.79, 26.86, 26.52, 26.73, 4847200],
-          [20210113, 27.0, 27.1, 26.72, 26.76, 3740200],
-          [20210114, 26.9, 26.99, 26.77, 26.99, 2521200]]
-SMA_5 = 0
-for i in range(10):
-    if i < 4:
-        continue
-    for j in range((i + 1)-5, i + 1):
-        SMA_5 += stocks[j][4]
-    SMA_5 = SMA_5 / 5
-    result = [stocks[i][0], SMA_5, stocks[i][4]]
-    stocks[i].extend(result)
-    SMA_5 = 0
-
-from pprint import pprint
-
-pprint(stocks)
+list=[]
+number = int(input())
+list.append(number)
+print(number)
+number = int(input())
+while True:
+    if number != 'exit':
+        for numbers in list:
+            if number <= numbers:
+                list.insert(list.index(numbers), number)
+                print(list)
+                break
+            elif number > list[-1]:
+                list.append(number)
+                print(list)
+                break
+            else:
+                continue
+    number = int(input())
