@@ -99,3 +99,27 @@ L[len(L):] = [1,2,3]
 # So L[len(L):len(L)] points to the right of 'c'
 print(L) # Please figure out & type the output here, run it, verify your answer.
 
+
+print("10) Delete Multiple List Items ------------------------")
+L = list("abcde")
+
+
+# positive index:     0    1    2    3    4
+#                   ['a', 'b', 'c', 'd', 'e']
+# negative index:    -5   -4   -3   -2   -1
+
+L[1:5] = []
+print(L)
+
+L = list("abcde")
+del L[1:5]
+print(L)
+
+print("11) Clone or Copy a list ----------------------------")
+L = list("abcde")
+print(L)
+
+L2 = L[:]
+print(L2)
+print(L2 is L) # False
+# 'is' operator is to check whether they are the same object, or they are different objects with same value.
