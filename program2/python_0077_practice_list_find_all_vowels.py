@@ -19,7 +19,8 @@ for letter in word:
 
     # Step 2.1) if the letter is a member of vowels list, then I append it to the list variable - found
     if letter in vowels:
-        found.append(letter)
+        if letter not in found:
+            found.append(letter)
 
 
 # Step 3) I print the list - found
