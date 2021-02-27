@@ -50,10 +50,12 @@ Answer: if len(list_a) is 10, then list_a index value is 0 - 9.
 '''
 
 
-list_a = [1,5,7,9,13,15,24,27,78,110,167]
+# list_a = [1,5,7,9,13,15,24,27,78,110,167]
 # list_a = [1,5,7]
+list_a = [1,5]
+list_b = [2,7]
 # list_a = []
-list_b = [2,2,6,8,16,17,18,19,99]
+# list_b = [2,2,6,8,16,17,18,19,99]
 
 
 # Step 1) I define the 3 variables
