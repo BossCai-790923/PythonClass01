@@ -1,32 +1,26 @@
-# merge
-list_a = [1, 5, 7, 9, 13, 15, 24, 27, 78, 110, 167]
-list_b = [2, 2, 6, 8, 16, 17, 18, 19, 99]
-# to list_ab
-# merge
-list_c = [1, 5, 7]
-list_d = [2, 2, 6, 8, 16, 17, 18, 19, 99]
-# to list_cd
-# merge
-list_e = []
-list_f = [2, 2, 6, 8, 16, 17, 18, 19, 99]
-# to list_ef
+# Step 1) Define a variable profit - I read annual profit from console
+total = 0.0
 
-new_list = []
-index_a = 0
-index_b = 0
-for n in range(len(list_a) + len(list_b)):
-    if index_a == len(list_a):
-        new_list.extend(list_b[list_b:])
-    if index_b == len(list_b):
-        new_list.extend(list_a[index_a:])
-    if list_a[index_a] >= list_b[index_b]:
-        new_list.append(list_b[index_b])
-        index_b += 1
-        new_list.append(list_a[index_a])
-        index_a += 1
-    else:
-        new_list.append(list_a[index_a])
-        index_a += 1
-        new_list.append(list_b[index_b])
-        index_b += 1
-print(new_list)
+# Step 2) Define variable bonus - use float constructor
+bonus = 0.0
+
+# Step 3) Define variable thresholds and rates which represent the table definition above.
+rates = [0.1, 0.075, 0.05, 0.05, 0.03, 0.03, 0.015, 0.015, 0.015, 0.015, 0.01]
+
+# Then I use variable I defined above.
+profit = int(input('profit'))
+
+if profit < 1000000:
+    bonus = profit * rates[0]
+    print(f'we should keep ${bonus} to our staff for this outlet.')
+    exit()
+
+tier_count = int(profit / 1000000)
+for tier in range(tier_count):
+    bonus_for_the_tier = rates[tier] * 1000000
+    bonus += bonus_for_the_tier
+
+profit_above_10_mil = profit % 1000000
+bonus += (profit_above_10_mil * rates[tier_count])
+print(f'we should keep ${bonus} to our staff for this outlet.')
+print(bonus)

@@ -12,7 +12,7 @@ monthDays = [31, 28, 31, 30, 31, 30,
 
 # Teacher comments: This method seems confusing. I am not sure what's the purpose of this method.
 def countLeapYears(d):
-    years = d.y
+    years = d.tier_count
 
     if (d.m <= 2):
         years -= 1
@@ -30,14 +30,14 @@ def countLeapYears(d):
 # So we don't need 2 dates, we only need 1 date.
 # I would suggest remove this method.
 def getDifference(dt1, dt2):
-    n1 = dt1.y * 365 + dt1.d
+    n1 = dt1.tier_count * 365 + dt1.d
 
     for i in range(0, dt1.m - 1):
         n1 += monthDays[i]
 
     n1 += countLeapYears(dt1)
 
-    n2 = dt2.y * 365 + dt2.d
+    n2 = dt2.tier_count * 365 + dt2.d
     for i in range(0, dt2.m - 1):
         n2 += monthDays[i]
     n2 += countLeapYears(dt2)
