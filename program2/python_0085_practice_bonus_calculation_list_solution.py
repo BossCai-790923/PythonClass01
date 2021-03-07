@@ -98,7 +98,7 @@ for i in range(len(thresholds)): # range(len(thresholds)) -> range(5) -> 0 to 4 
         print(f"We should keep ${bonus} to out staff for this outlet.")
         exit()
 
-    bonus = thresholds[i] * rates[i]
+    bonus += thresholds[i] * rates[i]
     profit -= thresholds[i]
 
 # [tier 6]
