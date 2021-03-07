@@ -88,4 +88,19 @@ I need to check whether the profit exceeds the thresholds value.
 
 '''
 
+# Step 4) Convert the logic to code
 
+# The for loop covers tier 1 to tier 5
+for i in range(len(thresholds)): # range(len(thresholds)) -> range(5) -> 0 to 4 -> [tier 1] to tier[5]
+
+    if profit <= thresholds[i]:
+        bonus += profit * rates[i]
+        print(f"We should keep ${bonus} to out staff for this outlet.")
+        exit()
+
+    bonus = thresholds[i] * rates[i]
+    profit -= thresholds[i]
+
+# [tier 6]
+bonus += profit * rates[5]
+print(f"We should keep ${bonus} to out staff for this outlet.")
