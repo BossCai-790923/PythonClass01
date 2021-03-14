@@ -32,7 +32,7 @@ print(" -------------------------------- ")
 c = [1,2,3]
 print(id(c))
 print('a == c    :', a == c) # True
-print('a is c    :', a is c) # True
+print('a is c    :', a is c) # False
 
 print(" -------------------------------- ")
 
