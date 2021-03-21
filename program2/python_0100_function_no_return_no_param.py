@@ -15,7 +15,7 @@ def greet_user():
     This part is called 'docstring'.
     It tells you what the function does.
     If you move your mouse over the function name, you can see docstring appear.
-    :return:
+    :return: nothing
     '''
     print("Hello!")
     print("What a nice day!")
