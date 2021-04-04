@@ -24,3 +24,9 @@ banner("Happy Sunday!", "*")
 Requirement:
 define a function. It can greet any user(parameter = name), with default message = 'Good morning'
 '''
+
+def greet(name, message='Good morning'):
+    print(name, message)
+
+greet('Tom')
+greet('Billy', 'How are you doing? ')

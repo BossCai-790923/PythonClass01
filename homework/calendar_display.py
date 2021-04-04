@@ -23,7 +23,7 @@ def num_days(month, leap):
 
 
 month_str = ['January', 'Feburary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-def gen_month(month, day_one, month_days):
+def generate_month(month, day_one, month_days):
     result = []
     result.append(month_str[month-1])
 
@@ -48,17 +48,17 @@ def gen_month(month, day_one, month_days):
     return result
 
 
-def gen_year(year):
+def generate_calendar(year):
     result = []
     result.append(year)
     for month in range(1, 13):
-        result.append(gen_month(month, first_day(year, month), num_days(month, leapyear(year))))
+        result.append(generate_month(month, first_day(year, month), num_days(month, leapyear(year))))
     return result
 
 
 
 def display_year(year):
-    calendar = gen_year(year)
+    calendar = generate_calendar(year)
     print(calendar[0])
     calendar.pop(0)
     for month_calendar in calendar:

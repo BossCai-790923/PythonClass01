@@ -26,9 +26,16 @@ w = 4
 h = 3
 print("long =", l, "width =", w, "height =", h, "volume =", volume_of_cuboid(l, w, h))
 
-
+'''
+Requirement:
+This function returns the nth_root of number x.
+For example:
+print(nth_root(4,2)) # This should print the square root of 4, so it should print 2
+print(nth_root(27,3)) # This should print the cube root of 27, so it should print 3
+print(nth_root(625,4)) # This should print the 4th root of 625, so it should print 5
+'''
 def nth_root(x, n):
-    pass
+    return x ** (1/n)
 
 print(nth_root(4, 2))
 print(nth_root(27, 3))

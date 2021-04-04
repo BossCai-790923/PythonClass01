@@ -1,40 +1,49 @@
-# list_a = [1, 5, 7, 9, 13, 15, 24, 27, 78, 110, 167]
-# list_b = [2, 2, 6, 8, 16, 17, 18, 19, 99]
-# list_a = [2]
-# list_b = [1]
-#
-#
-list_a = [1, 5, 7]
-list_b = []
-new_list = []
-index_a = 0
-index_b = 0
+def juice_cost(juice, container, material, supermarket):
+    cost = 0
+    if container == "ball":
+        if material == "plastic":
+            cost += 4*3.14*6**2 * 0.08
+            if juice == "orange":
+                cost += 4/3*3.14*6**3 * 0.14
+            elif juice == "apple":
+                cost += 4/3*3.14*6**3 * 0.11
+        elif material == "metal":
+            cost += 4*3.14*6**2 * 0.18
+            if juice == "orange":
+                cost += 4/3*3.14*6**3 * 0.14
+            elif juice == "apple":
+                cost += 4/3*3.14*6**3 * 0.11
+    elif container == "cube":
+        if material == "plastic":
+            cost += 10**2*6 * 0.08
+            if juice == "orange":
+                cost += 10**3 * 0.14
+            elif juice == "apple":
+                cost += 10**3 * 0.11
+        elif material == "metal":
+            cost += 10**2*6 * 0.18
+            if juice == "orange":
+                cost += 10**3 * 0.14
+            elif juice == "apple":
+                cost += 10**3 * 0.11
+    cost = cost * 1.3
+    if supermarket == "ntuc":
+        cost = cost * 1.1
+    elif supermarket == "cold storage":
+        cost = cost * 1.15
+    cost = cost / 100
+    print(f"Price of {juice} juice, container shape {container}, material {material}, sold at {supermarket}: ${round(cost, 2)}")
 
-while True:
-    if len(list_a) == 0 and len(list_b) == 0:
-        break
 
-    if len(list_a) == 0:
-        new_list += list_b[index_b:]
-        break
+juices = ["apple", "orange"]
+containers = ["cube", "ball"]
+materials = ["plastic", "metal"]
+supermarkets = ["ntuc", "cold storage"]
+surface_area = 0
+volume = 0
 
-    if len(list_b) == 0:
-        new_list += list_a[index_a:]
-        break
-
-    if index_a == len(list_a):
-        new_list += list_b[index_b:]
-        break
-
-    elif index_b == len(list_b):
-        new_list += list_a[index_a:]
-        break
-
-    if list_a[index_a] > list_b[index_b]:
-        new_list.append(list_b[index_b])
-        index_b += 1
-    else:
-        new_list.append(list_a[index_a])
-        index_a += 1
-
-print(new_list)
+for i in range(2):
+    for j in range(2):
+        for k in range(2):
+            for m in range(2):
+                juice_cost(juices[i], containers[j], materials[k], supermarkets[m])
