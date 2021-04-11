@@ -112,10 +112,14 @@ Step 4) Because NTUC and Cold Storage need to make profit, so same import price 
 
 def surface_and_volume(container):
     '''
-    HOMEWORK
+    Calculate the surface area and the volume of the container
 
-    :param container:
-    :return:
+    :param container: is a list. <br>
+                      container[0] can be 'cube' or 'sphere' <br>
+                      container[1] means 'radius' when container[0] is a sphere <br>
+                      container[1] means 'edge length' when container[0] is a cube
+
+    :return: a list which contains 2 values - the surface area and the volume of the container
     '''
     result = []
 
@@ -158,20 +162,22 @@ def calculate_cost(container_data, juice, material):
 
 def sold_price_to_supermarket(cost):
     '''
-    HOMEWORK
+    Calculate how much the factory should sell to the supermarket if the factory needs a profit of 30%
 
-    :param cost:
-    :return:
+    :param cost: cost for the factory to produce the juice
+    :return: selling price to the supermarket
     '''
     return cost * 1.3
 
 
 def sold_price_to_customer(cost, supermarket):
     '''
-    HOMEWORK
+    Calculate how much the supermarket should sell the juice to the customer if the supermarket needs to keep some profit
 
-    :param cost:
-    :param supermarket:
+    :param cost: price at which supermarket buys.
+    :param supermarket: is a list <br>
+                        supermarket[0] is the supermarket name, it can be either 'NTUC' or 'Cold Storage'
+                        supermarket[1] is the profit rate for the supermarket.
     :return:
     '''
     return cost * (1 + supermarket[1])
