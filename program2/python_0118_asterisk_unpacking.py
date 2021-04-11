@@ -41,10 +41,10 @@ Function Caller     ->       Function Body
 *list1                       a, b, c, d
 *range_args1                 start, stop, step
 
-When asterik (*) appears in 'function caller argument' postions,
+When asterisk (*) appears in 'function caller argument' position,
 This equals to convert a list to multiple variables.
 
-This is called asterik unpacking
+This is called asterisk unpacking
 '''
 
 
