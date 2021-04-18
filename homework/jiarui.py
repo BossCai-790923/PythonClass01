@@ -1,25 +1,27 @@
-user_input = 0
-profits = [0.1, 0.075, 0.05, 0.03, 0.015]
-millions = [1000000, 2000000, 4000000, 6000000, 10000000]
+input_num = int(input("Please input a number to be factorised: "))
+factor = 2
+myList = []
 
-
-while user_input != -1:
-    x = 0
-    i = 0
-    bonus = 0
-    user_input = int(input("Input profit, -1 to end: "))
-
-    while i <= 4 and user_input > millions[i]:
-        bonus += ((millions[i] - x) * profits[i])
-        x = millions[i]
-        i += 1
-
-    if i != 5:
-        bonus += ((user_input - x) * profits[i])
+while input_num != 1:
+    if (input_num % factor) == 0:
+        input_num = input_num / factor
+        myList.append(factor)
     else:
-        bonus += ((user_input - x) * 0.01)
+        factor += 1
 
-    print_val = format(bonus, '.2f')
-    print(f"The total bonus is ${print_val}")
+for i in range(len(myList)-1):
+    print(f"{myList[i]} * ", end='')
+print(myList[-1])
 
-print("Program ended")
+'''
+范老师点评：
+1. 家锐的代码值得大家一读。
+2. 优点在于，代码写得非常整洁，简练，容易理解。 只需要短短14行。而范老师的代码需要40-50行（不包括comments)。
+3. 缺点在于，a) worst case, 他的代码需要尝试从2到input_num 这么多次。性能不好。
+           b) 如果input_num is prime number, 那么输出的时候,忽略了 1 * 的部分。
+
+4. 范老师的代码和家锐同学的代码各有优缺点。
+   目前我们Python学习的重点是: 
+   '学习使用function,来把一个大的问题，切割成小的问题，采用divide-and-conquer策略'.
+   所以仍旧要follow 范老师的代码。 
+'''
