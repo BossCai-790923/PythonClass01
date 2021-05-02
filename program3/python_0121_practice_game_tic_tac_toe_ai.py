@@ -32,30 +32,6 @@ def check_coordinates(chess_board, coordinates):
 
     return True
 
-
-def check_win(chess_board, coordinates):
-    x = coordinates[0]
-    y = coordinates[1]
-
-    if chess_board[x][0] == chess_board[x][1] and chess_board[x][0] == chess_board[x][2]:
-        print("Win!")
-        exit()
-
-    if chess_board[0][y] == chess_board[1][y] and chess_board[0][y] == chess_board[2][y]:
-        print("Win!")
-        exit()
-
-    if x == 0 and y == 0 or x == 2 and y == 2 or x == 1 and y == 1:
-        if chess_board[0][0] == chess_board[1][1] and chess_board[0][0] == chess_board[2][2]:
-            print("Win!")
-            exit()
-
-    if x == 0 and y == 2 or x == 2 and y == 0 or x == 1 and y == 1:
-        if chess_board[2][0] == chess_board[1][1] and chess_board[2][0] == chess_board[0][2]:
-            print("Win!")
-            exit()
-
-
 def place_piece(chess_board, piece):
     while True:
         coordinates = get_user_coordinates()
@@ -65,8 +41,10 @@ def place_piece(chess_board, piece):
 
     chess_board[coordinates[0]][coordinates[1]] = piece
     print_chessboard(chess_board)
-    check_win(chess_board, coordinates)
     print('_' * 20)
+    #-- CODE ADD BEGIN ----------------------------------
+    update_lines_after_human_player(coordinates)
+    #-- CODE ADD END ------------------------------------
 
 
 #--CODE ADD BEGIN -------------------------------------------------------------
@@ -179,11 +157,59 @@ def update_lines_after_ai_player(coordinates):
 
 
 def update_lines_after_human_player(coordinates):
-    pass
+
+    for line in almost_lose_lines:
+        if coordinates in line:
+            print("Win!")
+            exit()
+
+    for line in almost_win_lines[:]:
+        if coordinates in line:
+            almost_win_lines.remove(line)
+            useless_lines.append(line)
+
+    for line in potential_lose_lines[:]:
+        if coordinates in line:
+            potential_lose_lines.remove(line)
+            almost_lose_lines.append(line)
+
+    for line in potential_win_lines[:]:
+        if coordinates in line:
+            potential_win_lines.remove(line)
+            useless_lines.append(line)
+
+    for line in empty_lines[:]:
+        if coordinates in line:
+            empty_lines.remove(line)
+            potential_lose_lines.append(line)
 
 
+def place_on_empty_spot(chess_board, line):
+    for dot in line:
+        if chess_board[dot[0]][dot[1]] == '_':
+            return dot
 
 
+def get_computer_coordinates(chess_board):
+
+    # Step 1) if any line is 'Almost win', the computer should place the 'piece' on it, end the game.
+    for line in almost_win_lines:
+        return place_on_empty_spot(chess_board, line)
+    # Step 2) if any line is 'Almost lose', the computer should place the 'piece' on it, stop human player from winning the game
+    for line in almost_lose_lines:
+        return place_on_empty_spot(chess_board, line)
+    # Step 3) Place a piece in a 'Potential Win' line, so that the line can be promoted to 'Almost win'.
+    for line in potential_win_lines:
+        return place_on_empty_spot(chess_board, line)
+    # Step 4) Place a piece in a 'Potential Lose' line, so that human player can not promote the line to 'Almost Lose'
+    for line in potential_lose_lines:
+        return place_on_empty_spot(chess_board, line)
+    # Step 5) Place a piece in 'Empty', so that the line can be promoted to 'Potential Win'
+    for line in empty_lines:
+        return place_on_empty_spot(chess_board, line)
+    # Step 6) Place a piece in 'Useless', as nowhere can be placed
+    for line in useless_lines:
+        return place_on_empty_spot(chess_board, line)
 
 
 
@@ -192,7 +218,7 @@ def place_piece_by_computer(chess_board, piece):
     computer_coordinates = get_computer_coordinates(chess_board)
     chess_board[computer_coordinates[0]][computer_coordinates[1]] = piece
     print_chessboard(chess_board)
-    check_win(chess_board, computer_coordinates)
+    update_lines_after_ai_player(computer_coordinates)
     print('_' * 20)
 
 #--CODE ADD END -------------------------------------------------------------
