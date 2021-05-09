@@ -1,26 +1,50 @@
-# Step 1) Define a variable profit - I read annual profit from console
-total = 0.0
+# caps = ['F', 'F', 'B', 'B', 'B', 'F', 'B', 'B', 'B', 'F', 'F', 'B', 'F']
+caps = ['F', 'F', 'F', 'F', 'B', 'B', 'B', 'B', 'F', 'F', 'F', 'F', 'F']
+def yells (list):
+    int_f=0
+    int_b=0
+    lenth=len(list)
 
-# Step 2) Define variable bonus - use float constructor
-bonus = 0.0
 
-# Step 3) Define variable thresholds and rates which represent the table definition above.
-rates = [0.1, 0.075, 0.05, 0.05, 0.03, 0.03, 0.015, 0.015, 0.015, 0.015, 0.01]
+    for x in range(lenth):
+        if list[x]=='F':
+            int_f+=1
+        if list[x]=='B':
+            int_b+=1
+    if int_b>int_f:
+        for i in range(lenth):
+            if lenth>=i+2:
+                if list[i]=='F' and list[i+1]=='F' and list[i+2]=='F':
+                    print(f'People in {i} through {i+2} ,please flip your caps')
+                    list[i+2]=''
 
-# Then I use variable I defined above.
-profit = int(input('profit'))
+                    continue
+            if lenth>i+1:
+                if list[i]=='F' and list[i+1]=='F':
+                    print(f'People in {i} through {i+1} ,please flip your caps')
+                    list[i+1]=''
 
-if profit < 1000000:
-    bonus = profit * rates[0]
-    print(f'we should keep ${bonus} to our staff for this outlet.')
-    exit()
+                    continue
+            if lenth>=i:
+                if list[i]=='F':
+                    print(f'People in {i} ,please flip your caps')
+                    continue
+    if int_b<int_f:
+        for i in range(lenth):
+            if lenth>=i+2:
+                if list[i]=='B' and list[i+1]=='B' and list[i+2]=='B':
+                    print(f'People in {i} through {i+2} ,please flip your caps')
+                    list[i+2]=''
 
-tier_count = int(profit / 1000000)
-for tier in range(tier_count):
-    bonus_for_the_tier = rates[tier] * 1000000
-    bonus += bonus_for_the_tier
+                    continue
 
-profit_above_10_mil = profit % 1000000
-bonus += (profit_above_10_mil * rates[tier_count])
-print(f'we should keep ${bonus} to our staff for this outlet.')
-print(bonus)
+            if lenth>i+1:
+                if list[i]=='B' and list[i+1]=='B':
+                    print(f'People in {i} through {i+1} ,please flip your caps')
+                    list[i+1]=''
+                    continue
+            if lenth>=i:
+                if list[i]=='B':
+                    print(f'People in {i} ,please flip your caps')
+                    continue
+yells(caps)
