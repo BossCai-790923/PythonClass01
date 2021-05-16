@@ -27,6 +27,33 @@ This equals to: you ungroup a tuple, and assign its value to multiple variables.
 '''
 
 
+def unpacking_example2():
+    x = 'jelly'
+    y = 'bean'
+
+    # Create a tuple on the right
+    # Assigne the tuple's value to the tuple on the left
+    # So x has y's value, y has x's value
+    x, y = y, x
+    print(x, y) # bean jelly
+
+    # it equals to
+    (x, y) = (y, x)
+    print(x, y) # jelly bean
 
 
-unpacking_example()
+def unpacking_example3():
+    # This is again, assgin tuple on the right to the tuple on the left
+    (a, (b, (c, d))) = (4, (3, (2, 1)))
+    print(a, b, c, d) #4, 3, 2, 1
+
+    # Because the outer most parentheses can be removed, so it equals to
+    a, (b, (c, d)) = 4, (3, (2, 1))
+    print(a, b, c, d) #4, 3, 2, 1
+
+
+
+
+# unpacking_example()
+# unpacking_example2()
+unpacking_example3()
