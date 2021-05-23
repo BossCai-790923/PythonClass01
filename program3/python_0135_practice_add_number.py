@@ -83,6 +83,19 @@ def solution2_math1_optimized(base_number, term_count):
     return sum
 
 
+'''
+Question:
+How many times the calculate (line 35) will be executed?
+Let's say, in total we have n terms.
+Answer: n - 1
+Time Complexity: O(n)
+-------------------------------------------------
+When n = 10; it calculates 10 - 1 = 9 times
+When n = 100; it calculates 100 - 1 = 99 times  - when data grows 10 times, roughly, code slows 10 times.
+The driving factor is n, -1 can be ignore.
+So we say: Big-O(n)
+'''
+
 
 def solution3_math2(base_number, term_count):
     sum = 0
