@@ -38,7 +38,7 @@ print(stock_prices)
 stupid_dict = {
     'a': 1,
     1: tuple("hello"),
-    tuple("helo"): plane
+    tuple("hello"): plane
 }
 print(stupid_dict)
 
@@ -62,6 +62,7 @@ a_man_list = [('name', 'Gumby'),('age', 42)]
 a_man_dict = dict(a_man_list)
 print(a_man_dict)
 
+print('---------------------------------------------')
 
 # HOMEWORK --------------------------------
 # Do not run these code, tell me the output
