@@ -70,3 +70,8 @@ print('---------------------------------------------')
 # print(stupid_dict['a'])
 # print(stupid_dict[stupid_dict['a']])
 # print(stupid_dict[stupid_dict[stupid_dict['a']]])
+# --------------------------------------------------------------------
+# Attention: This dict is REALLY STUPID, as you shouldn't use mix types of keys in a dictionary
+# You can use mix types of keys, but you shouldn't.
+# This is like: Can I stop a car on train tracks when no trains are coming? Yes you can, but you shouldn't.
+# --------------------------------------------------------------------

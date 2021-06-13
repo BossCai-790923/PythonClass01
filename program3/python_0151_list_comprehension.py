@@ -1,6 +1,4 @@
-
 def example1():
-
     list1 = list(range(10))
     tuple1 = tuple(range(10))
     range1 = range(10)
@@ -8,7 +6,7 @@ def example1():
 
     # n * 2             ->  use the variable
     # for n in list 1   ->  define a variable
-    new_list1 = [   n * 2   for n in list1    ]
+    new_list1 = [n * 2 for n in list1]
     print(new_list1)
 
     new_list2 = [n * 3 for n in tuple1]
@@ -20,6 +18,7 @@ def example1():
     new_list4 = [ch.upper() for ch in str]
     print(new_list4)
 
+
 '''
 --------------------------
 Summary 1
@@ -30,8 +29,8 @@ new_list = [expression for n in range]
 new_list = [expression for n in str]
 '''
 
-def example2():
 
+def example2():
     list1 = list(range(10))
     tuple1 = tuple(range(10))
     range1 = range(10)
@@ -49,6 +48,7 @@ def example2():
     new_list4 = [ch.upper() for ch in str if ch in 'aeiou']
     print(new_list4)
 
+
 '''
 --------------------------
 Summary 2
@@ -61,7 +61,6 @@ new_list = [expression for n in str if boolean_expression]
 
 
 def example3():
-
     new_list = [0] * 10
     print(new_list)
 
@@ -69,8 +68,16 @@ def example3():
     print(new_list)
 
 
-
-
 # example1()
 # example2()
 example3()
+
+
+# HOMEWORK ------------------------------
+# c) Calculate the sum of square number for 1 - 10 using list comprehension
+
+print('---------------------------------------------')
+
+my_square_list = [   i ** 2             for i in       range(1, 11)                ]
+print(my_square_list)
+print(sum(my_square_list))
