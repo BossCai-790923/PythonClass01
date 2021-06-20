@@ -11,6 +11,7 @@ print(a_list)
 
 a_dict = {}
 a_dict[4] = 'Tom'
+a_dict['4'] = 'Billly'
 print(a_dict)
 
 # IMPORTANCE !!! -------------------------------------------
