@@ -1,17 +1,26 @@
-celebrities_arrival_schedule = [(6, 8), (6, 12), (6, 7), (7, 8),
-                                (7, 10), (8, 9), (8, 10), (9, 12),
-                                (9, 10), (10, 11), (10, 12), (11, 12)]
+from collections import defaultdict
 
-celebrities_met = []
+count = 1
+count_list = []
 
-for my_arrival in range(12):
-    people_met = 0
-    for i in range(len(celebrities_arrival_schedule)):
-        if celebrities_arrival_schedule[i][0] <= my_arrival:
-            if celebrities_arrival_schedule[i][1] >= (my_arrival+1):
-                people_met += 1
-    celebrities_met.append(people_met)
+tiles_dict = defaultdict(int)
 
-best_start_time = celebrities_met.index(max(celebrities_met))
+for i in range(10):
+    tiles_dict[i] = 1000
+while True:
+    count_list = list(str(count))
 
-print(f"The best time is {best_start_time} to {best_start_time + 1}.")
+    # if len(count_list) < 4:
+    #     for j in range(4 - (len(count_list))):
+    #         count_list.append("0")
+
+    count_list += ['0'] * (4 - len(count_list))
+
+
+    for k in range(len(count_list)):
+        tiles_dict[int(count_list[k])] -= 1
+    for l in range(len(tiles_dict)):
+        if tiles_dict[l] == 0:
+            print(count)
+            exit()
+    count += 1
