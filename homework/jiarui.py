@@ -1,40 +1,46 @@
 """
-Now you have 1000 tiles each from '0' to '9'.
-If you start installing door number for '0001'.
-Question: What's the maximum door number you can install till your run out of tiles?
-A more challenging question:
-Can you use defaultdict in this Question?
+Introduction:
+We are going to design a Singapore MRT transit app.
+Right now, Singapore MRT system has green_line / red_line / yellow_line / purple_line / brown_line, 5 lines.
+Green_line and yellow_line also have sub lines, meaning in total, we have 7 lines.
+I've defined the 7 tuples as below:
 """
 
-counter = {
-    '0': 0,
-    '1': 0,
-    '2': 0,
-    '3': 0,
-    '4': 0,
-    '5': 0,
-    '6': 0,
-    '7': 0,
-    '8': 0,
-    '9': 0
+# PREPARE DATA BEGIN =================================
 
-}
+from itertools import combinations
 
+green_line= ('Pasir Ris', 'Tampines', 'Simei', 'Tanah Merah', 'Bedok', 'Kembangan', 'Eunos', 'Paya Lebar', 'Aljunied', 'Kallang', 'Lavender', 'Bugis', 'City Hall', 'Raffles Place', 'Tanjong Pagar', 'Outram Park', 'Tiong Bahru', 'Redhill', 'Queenstown', 'Commonwealth', 'Buona Vista', 'Dover', 'Clementi', 'Jurong East', 'Chinese Garden', 'Lakeside', 'Boon Lay', 'Pioneer', 'Joo Koon', 'Gul Circle', 'Tuas Crescent', 'Tuas West Road', 'Tuas Link')
+green_sub_line= ('Tanah Merah', 'Expo', 'Changi Airport')
 
-num_candidate = 0
-enough = 1
+red_line= ('Jurong East','Bukit Batok','Bukit Gombak','Choa Chu Kang','Yew Tee','Kranji','Marsiling','Woodlands','Admiralty','Sembawang','Canberra','Yishun','Khatib','Yio Chu Kang','Ang Mo Kio','Bishan','Braddell','Toa Payoh','Novena','Newton','Orchard','Somerset','Dhoby Ghaut','City Hall','Raffles Place','Marina Bay','Marina South Pier')
 
-while enough:
-    str_candidate = f'{num_candidate:04d}'
-    for i in range(4):
-        counter[str_candidate[i]] += 1
+yellow_line= ('Dhoby Ghaut', 'Bras Basah', 'Esplanade', 'Promenade', 'Nicoll Highway', 'Stadium', 'Mountbatten', 'Dakota', 'Paya Lebar', 'MacPherson', 'Tai Seng', 'Bartley', 'Serangoon', 'Lorong Chuan', 'Bishan', 'Marymount', 'Caldecott', 'Botanic Gardens', 'Farrer Road', 'Holland Village', 'Buona Vista', 'one-north', 'Kent Ridge', 'Haw Par Villa', 'Pasir Panjang', 'Labrador Park', 'Telok Blangah', 'HarbourFront')
+yellow_sub_line= ('Marina Bay', 'Bayfront', 'Promenade')
 
-    for key in counter:
-        if counter[key] > 1000:
-            enough = 0
+purple_line= ('HarbourFront', 'Outram Park', 'Chinatown', 'Clarke Quay', 'Dhoby Ghaut', 'Little India', 'Farrer Park', 'Boon Keng', 'Potong Pasir', 'Woodleigh', 'Serangoon', 'Kovan', 'Hougang', 'Buangkok', 'Sengkang', 'Punggol')
 
-    num_candidate += 1
+brown_line = ('Woodlands North', 'Woodlands', 'Woodlands South', 'Springleaf', 'Lentor', 'Mayflower', 'Bright Hill', 'Upper Thomson', 'Caldecott', 'Mount Pleasant', 'Stevens', 'Napier', 'Orchard Boulevard', 'Orchard', 'Great World', 'Havelock', 'Outram Park', 'Maxwell', 'Shenton Way', 'Marina Bay', 'Marina South', 'Gardens by the Bay')
+
+'''
+Requirement: Your task is find out all the transit stations among all the lines.
+'''
+
+mrt_lines = [set(green_line), set(green_sub_line), set(red_line), set(yellow_line), set(yellow_sub_line),
+             set(purple_line), set(brown_line)]
+
+combinations = tuple(combinations(mrt_lines, 2))
 
 
-print(f"The maximum door number you can install is {num_candidate}")
+transit_stations = set()
+
+for i in range(len(combinations)):
+    transit_station = tuple(combinations[i][0].intersection(combinations[i][1]))
+    if len(transit_station) != 0:
+        for item in transit_station:
+            transit_stations.add(item)
+
+print(transit_stations)
+
+
 
