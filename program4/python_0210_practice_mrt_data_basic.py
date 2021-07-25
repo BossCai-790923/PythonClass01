@@ -1,12 +1,5 @@
-'''
-Introduction:
-We are going to design a Singapore MRT transit app.
-Right now, Singapore MRT system has green_line / red_line / yellow_line / purple_line / brown_line, 5 lines.
-Green_line and yellow_line also have sub lines, meaning in total, we have 7 lines.
-I've defined the 7 tuples as below:
-'''
 
-# PREPARE DATA BEGIN =================================
+
 
 green_line= ('Pasir Ris', 'Tampines', 'Simei', 'Tanah Merah', 'Bedok', 'Kembangan', 'Eunos', 'Paya Lebar', 'Aljunied', 'Kallang', 'Lavender', 'Bugis', 'City Hall', 'Raffles Place', 'Tanjong Pagar', 'Outram Park', 'Tiong Bahru', 'Redhill', 'Queenstown', 'Commonwealth', 'Buona Vista', 'Dover', 'Clementi', 'Jurong East', 'Chinese Garden', 'Lakeside', 'Boon Lay', 'Pioneer', 'Joo Koon', 'Gul Circle', 'Tuas Crescent', 'Tuas West Road', 'Tuas Link')
 green_sub_line= ('Tanah Merah', 'Expo', 'Changi Airport')
@@ -20,22 +13,13 @@ purple_line= ('HarbourFront', 'Outram Park', 'Chinatown', 'Clarke Quay', 'Dhoby 
 
 brown_line = ('Woodlands North', 'Woodlands', 'Woodlands South', 'Springleaf', 'Lentor', 'Mayflower', 'Bright Hill', 'Upper Thomson', 'Caldecott', 'Mount Pleasant', 'Stevens', 'Napier', 'Orchard Boulevard', 'Orchard', 'Great World', 'Havelock', 'Outram Park', 'Maxwell', 'Shenton Way', 'Marina Bay', 'Marina South', 'Gardens by the Bay')
 
-'''
-Requirement: Your task is find out all the transit stations among all the lines.
-'''
-from itertools import combinations
-a_list = []
-for i in green_line:
-    for j in green_sub_line:
-        for k in red_line:
-            for l in yellow_line:
-                for m in yellow_sub_line:
-                    for n in purple_line:
-                        for o in brown_line:
-                            combi = list(combinations([i,j,k,l,m,n,o], 2))
-                            for p in combi:
-                                if combi[1] == combi[2]:
-                                    a_list.append(p)
+blue_line = ('Bukit Panjang', 'Cashew', 'Hillview', 'Beauty World', 'King Albert Park', 'Sixth Avenue', 'Tan Kah Kee', 'Botanic Gardens', 'Stevens', 'Newton', 'Little India', 'Rochor', 'Bugis', 'Promenade', 'Bayfront', 'Downtown', 'Telok Ayer', 'Chinatown', 'Fort Canning', 'Bencoolen', 'Jalan Besar', 'Bendemeer', 'Geylang Bahru', 'Mattar', 'MacPherson', 'Ubi', 'Kaki Bukit', 'Bedok North', 'Bedok Reservoir', 'Tampines West', 'Tampines', 'Tampines East', 'Upper Changi', 'Expo', 'Xilin', 'Sungei Bedok')
 
-set = set(a_list)
-print(set)
+line_name_dict = {  'green_line'        : green_line,
+                    'green_sub_line'    : green_sub_line,
+                    'red_line'          : red_line,
+                    'yellow_line'       : yellow_line,
+                    'yellow_sub_line'   : yellow_sub_line,
+                    'purple_line'       : purple_line,
+                    'brown_line'        : brown_line,
+                    'blue_line'         : blue_line}
