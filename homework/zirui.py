@@ -1,41 +1,52 @@
-from itertools import combinations
+from program4.python_0210_practice_mrt_data_basic import line_name_dict
+from collections import defaultdict
+from itertools import permutations
 
-green_line = {'Pasir Ris', 'Tampines', 'Simei', 'Tanah Merah', 'Bedok', 'Kembangan', 'Eunos', 'Paya Lebar', 'Aljunied',
-              'Kallang', 'Lavender', 'Bugis', 'City Hall', 'Raffles Place', 'Tanjong Pagar', 'Outram Park',
-              'Tiong Bahru', 'Redhill', 'Queenstown', 'Commonwealth', 'Buona Vista', 'Dover', 'Clementi', 'Jurong East',
-              'Chinese Garden', 'Lakeside', 'Boon Lay', 'Pioneer', 'Joo Koon', 'Gul Circle', 'Tuas Crescent',
-              'Tuas West Road', 'Tuas Link'}
-green_sub_line = {'Tanah Merah', 'Expo', 'Changi Airport'}
+possible_transit_set = set()
+remove_from_set = set()
+pts = set()
 
-red_line = {'Jurong East', 'Bukit Batok', 'Bukit Gombak', 'Choa Chu Kang', 'Yew Tee', 'Kranji', 'Marsiling',
-            'Woodlands', 'Admiralty', 'Sembawang', 'Canberra', 'Yishun', 'Khatib', 'Yio Chu Kang', 'Ang Mo Kio',
-            'Bishan', 'Braddell', 'Toa Payoh', 'Novena', 'Newton', 'Orchard', 'Somerset', 'Dhoby Ghaut', 'City Hall',
-            'Raffles Place', 'Marina Bay', 'Marina South Pier'}
 
-yellow_line = {'Dhoby Ghaut', 'Bras Basah', 'Esplanade', 'Promenade', 'Nicoll Highway', 'Stadium', 'Mountbatten',
-               'Dakota', 'Paya Lebar', 'MacPherson', 'Tai Seng', 'Bartley', 'Serangoon', 'Lorong Chuan', 'Bishan',
-               'Marymount', 'Caldecott', 'Botanic Gardens', 'Farrer Road', 'Holland Village', 'Buona Vista',
-               'one-north', 'Kent Ridge', 'Haw Par Villa', 'Pasir Panjang', 'Labrador Park', 'Telok Blangah',
-               'HarbourFront'}
-yellow_sub_line = {'Marina Bay', 'Bayfront', 'Promenade'}
+# Let's assume, the passenger can maximum transit twice
+# Let's list out all change lines possibilities
 
-purple_line = {'HarbourFront', 'Outram Park', 'Chinatown', 'Clarke Quay', 'Dhoby Ghaut', 'Little India', 'Farrer Park',
-               'Boon Keng', 'Potong Pasir', 'Woodleigh', 'Serangoon', 'Kovan', 'Hougang', 'Buangkok', 'Sengkang',
-               'Punggol'}
+# So I am going to define a dict
+# key - a tuple like ('blue_line', 'brown_line')
+# value - all change line possibilities
 
-brown_line = {'Woodlands North', 'Woodlands', 'Woodlands South', 'Springleaf', 'Lentor', 'Mayflower', 'Bright Hill',
-              'Upper Thomson', 'Caldecott', 'Mount Pleasant', 'Stevens', 'Napier', 'Orchard Boulevard', 'Orchard',
-              'Great World', 'Havelock', 'Outram Park', 'Maxwell', 'Shenton Way', 'Marina Bay', 'Marina South',
-              'Gardens by the Bay'}
+change_line_possibilities_dict = defaultdict(list)
 
-lines_list = (green_line, green_sub_line, red_line, yellow_line, yellow_sub_line, purple_line, brown_line)
 
-transit_stations = set()
+def populate_change_lines_possibilities_dict():
 
-comb = list(combinations(set(range(len(lines_list))), 2))
+    # because the start station and end station can be of the same color
+    # Let's build a list which each line appears twice.
+    line_name_list = list(line_name_dict.keys()) * 2
+    print(line_name_list)
 
-for i in range(len(comb)):
-    lines_set_1 = lines_list[comb[i][0]]
-    lines_set_2 = lines_list[comb[i][1]]
-    inter = lines_set_1 & lines_set_2
-    print(inter)
+    # Let's see how many possibilities there exist
+    possible_set = set(permutations(line_name_list, 2))
+    print(possible_set)
+
+    print(">>>>>>")
+    for lines in possible_set:
+        for lines_2 in possible_set:
+            if lines_2[0] == lines[0] or lines_2[1] == lines[0]:
+                possible_transit_set.add(lines_2)
+            if lines_2[0] == lines[1] or lines_2[1] == lines[1]:
+                possible_transit_set.add(lines_2)
+            for lines_3 in possible_transit_set:
+                pts = possible_transit_set.copy()
+                for lines_4 in possible_transit_set:
+
+                    if lines_4[0] != lines_3[0] and lines_4[1] != lines_3[0]:
+                        print(pts)
+                        pts.remove(lines_4)
+                    if lines_4[0] != lines_3[1] and lines_4[1] != lines_3[1]:
+                        print(pts)
+                        pts.remove(lines_4)
+        print(pts)
+        possible_transit_set.clear()
+
+
+populate_change_lines_possibilities_dict()

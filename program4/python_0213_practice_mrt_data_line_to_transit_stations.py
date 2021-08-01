@@ -8,6 +8,7 @@ from pprint import pprint
 # PREPARE DATA BEGIN ======================================
 line_to_transit_stations_dict = defaultdict(set)
 
+
 # FUNCTION DEFINITION BEGIN ===============================
 def populate_line_to_transit_station_dict():
 

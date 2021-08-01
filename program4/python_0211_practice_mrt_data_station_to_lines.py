@@ -20,6 +20,9 @@ if __name__ == '__main__':
 
     populate_station_to_lines_dict()
 
+    # for station, lines in station_to_lines_dict.items():
+    #     if len(lines) > 1:
+    #         print(f"{station} is a transit station, which joins {lines}")
+
     for station, lines in station_to_lines_dict.items():
-        if len(lines) > 1:
-            print(f"{station} is a transit station, which joins {lines}")
+        print(f"{station} is on {lines}")
