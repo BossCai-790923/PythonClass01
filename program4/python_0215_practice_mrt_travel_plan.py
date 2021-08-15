@@ -26,8 +26,6 @@ def find_2_line_route(start_station_line_name, end_station_line_name, start_stat
         part_2_route = find_1_line_route(end_station_line_name, transit_station, end_station)
         route = part_1_route + part_2_route[1::]
         possible_route_list.append(route)
-
-        # if len(route) == len(set(route)):
     return possible_route_list
 
 
