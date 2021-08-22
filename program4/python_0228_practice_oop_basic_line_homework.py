@@ -1,4 +1,4 @@
-from python_0227_practice_oop_basic_point import Point
+from python_0227_practice_oop_basic_point_homework import Point
 import turtle
 
 
