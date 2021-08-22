@@ -20,10 +20,13 @@ class Student:
         print(f"Good morning Sir! My name: {self.name}! I come from {self.school}, my score is: {self.score}")
 
     def go_to_school(self):
-        pass
+        print(f'On weekdays, I go to {self.school} school.')
 
     def play_game(self):
-        pass
+        if self.score < 80:
+            print(f'I cannot play game, as my score {self.score} is too low, I have to study hard.')
+        else:
+            print("Enjoy the game!")
 
 '''
 Q) What is class?
@@ -104,6 +107,9 @@ if __name__ == '__main__':
     # Usage 1) I can invoke student objects' method
     student_1.say_his_score_loudly() # you can ignore the 'self' parameter
     student_2.say_his_score_loudly()
+
+    student_1.play_game()
+    student_2.play_game()
 
     # Usage 2) I can access student objects' attributes directly
     print(f'Student_1 info: {student_1.name} from {student_1.school}, with score {student_1.score}')
