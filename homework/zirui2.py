@@ -1,20 +1,29 @@
-from python_0227_practice_oop_basic_point_homework import Point
+from zirui import Point
 import turtle
 
 
 # CLASS DEFINITION BEGIN ==========================
 
+
 class Line():
+
     def __init__(self, point_a, point_b, color):
-        pass
+        self.point_a = point_a
+        self.point_b = point_b
+        self.color = color
 
     def length(self):
-        pass
+        return self.point_a.distance_to(self.point_b)
 
     def draw(self):
-        pass
+        turtle.penup()
+        turtle.pencolor(self.color)
+        turtle.goto(self.point_a.to_tuple())
+        turtle.pendown()
+        turtle.goto(self.point_b.to_tuple())
 
 # PREPARE DATA BEGIN =================================
+
 
 p1 = Point(30, 50)
 p2 = Point(-10, 20)

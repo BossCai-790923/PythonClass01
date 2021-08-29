@@ -1,52 +1,59 @@
-from program4.python_0210_practice_mrt_data_basic import line_name_dict
-from collections import defaultdict
-from itertools import permutations
+from math import sqrt
 
-possible_transit_set = set()
-remove_from_set = set()
-pts = set()
+# CLASS DEFINITION BEGIN ==========================
 
 
-# Let's assume, the passenger can maximum transit twice
-# Let's list out all change lines possibilities
+class Point:
 
-# So I am going to define a dict
-# key - a tuple like ('blue_line', 'brown_line')
-# value - all change line possibilities
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        print(f"New point ({x, y}) is created.")
 
-change_line_possibilities_dict = defaultdict(list)
+    def move_to(self, x, y):
+        self.bx = self.x
+        self.by = self.y
+        self.x = x
+        self.y = y
+        print(f"Moving point ({self.bx, self.by}) to ({x, y}).")
 
+    def move_by(self, dx, dy):
+        print(f"Moving point ({self.x, self.y}) by ({dx, dy}).")
+        self.x += dx
+        self.y += dy
+        print(f"Current location: ({self.x, self.y})")
 
-def populate_change_lines_possibilities_dict():
+    def distance_to(self, other):
+        print(sqrt((self.x-other.x)**2 + (self.y-other.y)**2))
 
-    # because the start station and end station can be of the same color
-    # Let's build a list which each line appears twice.
-    line_name_list = list(line_name_dict.keys()) * 2
-    print(line_name_list)
+    def to_tuple(self):
+        return (self.x, self.y)
 
-    # Let's see how many possibilities there exist
-    possible_set = set(permutations(line_name_list, 2))
-    print(possible_set)
-
-    print(">>>>>>")
-    for lines in possible_set:
-        for lines_2 in possible_set:
-            if lines_2[0] == lines[0] or lines_2[1] == lines[0]:
-                possible_transit_set.add(lines_2)
-            if lines_2[0] == lines[1] or lines_2[1] == lines[1]:
-                possible_transit_set.add(lines_2)
-            for lines_3 in possible_transit_set:
-                pts = possible_transit_set.copy()
-                for lines_4 in possible_transit_set:
-
-                    if lines_4[0] != lines_3[0] and lines_4[1] != lines_3[0]:
-                        print(pts)
-                        pts.remove(lines_4)
-                    if lines_4[0] != lines_3[1] and lines_4[1] != lines_3[1]:
-                        print(pts)
-                        pts.remove(lines_4)
-        print(pts)
-        possible_transit_set.clear()
+    def __str__(self):
+        return f"({self.x}, {self.y})"
 
 
-populate_change_lines_possibilities_dict()
+# MAIN PROGRAM BEGIN =================================
+
+if __name__ == '__main__':
+
+    print("Creating p1 -------------------------")
+    p1 = Point(-10, -10)
+
+    print("Moving p1 -------------------------")
+    p1.move_to(3, 5)
+
+    print("p1 location -------------------------")
+    print(f"p1 location: {p1}")
+
+    print("Creating p2 -------------------------")
+    p2 = Point(0, 0)
+
+    print("Moving p2 by-------------------------")
+    p2.move_by(-1, 2)
+
+    print("p2 location -------------------------")
+    print(f"p2 location: {p2}")
+
+    print("Calculating p1 to p2 distance -------")
+    print(p1.distance_to(p2))

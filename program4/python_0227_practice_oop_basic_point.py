@@ -5,26 +5,45 @@ from math import sqrt
 class Point:
 
     def __init__(self, x, y):
-        pass
+        self.x = x
+        self.y = y
+        print(f"New point({x},{y}) is created.")
 
     def move_to(self, x, y):
-        pass
+        print(f"Moving point({self.x},{self.y}) to new location ({x},{y})")
+        self.x = x
+        self.y = y
 
 
-    def move_by(self, dx, dy):
-        pass
+    def move_by(self, delta_x, delta_y):
+        print(f"Moving point({self.x},{self.y}) by {delta_x} and {delta_y}")
+        self.x += delta_x
+        self.y += delta_y
+
+    '''
+    dx -> delta x
+    In math, delta means 'increased by'
+    '''
 
     def distance_to(self, other):
-        pass
+        a = self.x - other.x
+        b = self.y - other.y
+        return sqrt(a ** 2 + b ** 2)
+
 
     def __str__(self):
-        pass
+        return f'({self.x},{self.y})'
 
     def to_tuple(self):
         '''
         Create a tuple from x and y
         '''
-        pass
+        return self.x, self.y
+
+    def create_new_point(self, delta_x, delta_y):
+        new_x = self.x + delta_x
+        new_y = self.y + delta_y
+        return Point(new_x, new_y)
 
 
 # MAIN PROGRAM BEGIN =================================
