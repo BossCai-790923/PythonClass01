@@ -39,8 +39,8 @@ class Clock:
 
     def run(self):
         while True:
-            self.show_time()
-            self.next_second()
+            self.__show_time()
+            self.__next_second()
             time.sleep(1) # Your program will sleep for 1 second
 
     def __str__(self):
@@ -50,9 +50,9 @@ class Clock:
 # MAIN PROGRAM BEGIN ==========================
 if __name__ == '__main__':
     clock = Clock(9, 50, 5)
-    clock.__show_time()
-    clock.__next_second()
-    clock.__show_time()
+    # clock.__show_time()
+    # clock.__next_second()
+    # clock.__show_time()
     clock.run()
 
 '''
