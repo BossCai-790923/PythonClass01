@@ -12,14 +12,14 @@ def C_turn(list):
 
 
 if __name__=="__main__":
-    input1=input('please input:')
+    input1=input()
     inputlist=list(input1)
     for i in inputlist:
-        if i == 'a':
+        if i == 'A':
             A_turn(cups)
-        if i == 'b':
+        if i == 'B':
             B_turn(cups)
-        if i == 'c':
+        if i == 'C':
             C_turn(cups)
 
     print(cups.index('ball')+1)
