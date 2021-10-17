@@ -13,7 +13,7 @@ def count_down(n):
         return
 
     # recursive call
-    # HOMEWORK
+    count_down(n-1)
 
 
 count_down(10)

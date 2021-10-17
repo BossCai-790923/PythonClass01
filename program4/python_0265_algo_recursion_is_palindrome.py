@@ -10,7 +10,7 @@ def is_palindrome(str1):
         return False
 
     # recursive call
-    # homework
+    return is_palindrome(str1[1:-1])
 
 
 

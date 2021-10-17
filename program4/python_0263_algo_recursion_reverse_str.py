@@ -6,8 +6,10 @@ def reverse_str(str1):
         return str1
 
     # recursive call:
-    # homework
+    return reverse_str(str1[1:]) + str1[0]
 
+    # explanation:
+    # 'abcdefg'       -> 'a' + 'bcdefg'  -> reverse_str('bcdefg') + 'a'
 
 
 

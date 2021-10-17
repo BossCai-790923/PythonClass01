@@ -1,3 +1,8 @@
+'''
+Requirement:
+Tell me how many elements are there in the list.
+'''
+
 
 def howmanyin_no_recursion(target_list):
     return len(target_list)

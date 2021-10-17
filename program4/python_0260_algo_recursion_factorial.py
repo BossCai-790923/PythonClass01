@@ -1,3 +1,5 @@
+# find the factorial value of number n, which equals to 1 * 2 * 3 * .... * n
+
 
 def factorial_no_recursion(n):
     result = 1
@@ -6,6 +8,7 @@ def factorial_no_recursion(n):
         result *= i
 
     return result
+
 
 
 def factorial(n):

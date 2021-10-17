@@ -12,7 +12,7 @@ def sum_recursion(n):
         return n
 
     # recursive call
-    # homework
+    return n + sum_recursion(n-1)
 
 
 

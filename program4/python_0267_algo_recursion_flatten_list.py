@@ -14,11 +14,10 @@ def flatten_list(target_list):
 
     for e in target_list:
 
-        if not isinstance(e, list): # e is not a list
+        if not isinstance(e, list): # e is not a list -> if type(e) != list
             result.append(e)
         else: # e is a list
-            pass
-            # HOMEWORK
+            result.extend(flatten_list(e))
 
     return result
 
