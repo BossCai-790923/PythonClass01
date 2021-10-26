@@ -1,18 +1,26 @@
-original_height = 100
-
-def ball_height(n):
+def recursion(n):
     if n == 1:
-        return original_height
-    return ball_height(n-1) / 2
-    # return format(original_height / (2**(n)))
+        return 0
+    elif n == 2:
+        return 1
+
+    return recursion(n - 1) + recursion(n - 2)
 
 
-
-def total_distance(n):
+def non_recursion(n):
     if n == 1:
-        return original_height
-    return total_distance(n-1) + 2 * ball_height(n)
+        return 0
+    elif n == 2:
+        return 1
+    first = 0
+    second = 1
+    ans = 0
+    for i in range(n - 2):
+        ans = first + second
+        first = second
+        second = ans
+    return ans
 
 
-print(total_distance(10))
-print(ball_height(10))
+print(recursion(10))
+print(non_recursion(10))
