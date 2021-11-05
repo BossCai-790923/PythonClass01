@@ -42,7 +42,7 @@ Basic steps:
 3) solve and save those subproblem. -> key steps!
 4) rsuse the solution of subproblem. -> key steps!
 
-Strongly suggestion: PLEASE WATCH IT! 
+Strong suggestion: PLEASE WATCH IT! 
 MIT Computer Science Algo Lesson 
 https://www.youtube.com/watch?v=OQ5jsbhAv_M&list=PLcDimPvbmfT8qAxD6JH_kmXiQwTNcoK78
 
