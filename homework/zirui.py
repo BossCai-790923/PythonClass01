@@ -1,33 +1,22 @@
-bounce = 0
-distance = 0
-ending_height = 0
+# top-down
+
+memory = [-1] * 50
 
 
-def ball_bounce_distance(height):
-    global distance
-    global bounce
-    if bounce == 9:
-        return distance*2 - 100
-    else:
-        bounce += 1
-        distance += height
-        return ball_bounce_distance(height/2)
+def fibonacci_rabbit_top_down(num):
+    if memory[num] == -1:
+        if num == 0:
+            memory[num] = 0
+        elif num == 1:
+            memory[num] = 1
+        elif num == 2:
+            memory[num] = 1
+        elif num == 3:
+            memory[num] = 1
+        else:
+            memory[num] = fibonacci_rabbit_top_down(num - 2) + fibonacci_rabbit_top_down(num - 3) + fibonacci_rabbit_top_down(num - 4)
 
-#
-# def ball_bounce_10_height(height):
-#     global bounce
-#     global ending_height
-#     if bounce == 10:
-#         return ending_height
-#     else:
-#         bounce += 1
-#         ending_height = height
-#         return ball_bounce_10_height(height/2)
+    return memory[num]
 
 
-print(ball_bounce_distance(100))
-print(distance)
-print(bounce)
-#
-# bounce = 0
-# print(ball_bounce_10_height(100))
+print(fibonacci_rabbit_top_down(20))
