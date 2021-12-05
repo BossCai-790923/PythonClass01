@@ -1,11 +1,16 @@
 '''
 HOMEWORK:
 
-In month 1, there is a pair of baby rabbits.
-In month 4, the pair is able to breed another pair.
+In month 1, there is a pair of newly-born rabbits.
+From month 4 onwards, the baby rabbits have fully grown up, and they are able to breed another baby pair rabbits each month.
+So they will breed the 2nd pair in 5th month, 3rd pair in 6th month, 4th pair in 7th month, non-stop.
+
+The 1st baby pair they breed in 4th month will become grown-up rabbits in 7th month. So there will be 2 newly-born pair of rabbits in 7th month, as there are 2 pairs of grown-up rabbit now.
+And there will be 3 newly-born pair of rabbit in 8th month, as the 2nd pair born in 5th month have grown-up as well in 8th month, result in 3 pairs of grown-up rabbits.
 
 Assume, the rabbit never dies, calculate the total pairs of the rabbit at month 20.
 '''
+
 
 '''
 ------------
