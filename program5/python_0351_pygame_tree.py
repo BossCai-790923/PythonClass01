@@ -33,6 +33,8 @@ class PyGameTree:
         pygame.display.update()
 
 
+
+
     def draw_line_segment(self, x1, y1, theta, depth):
         '''
         x1, y1: line segment start point coordinates
@@ -70,10 +72,10 @@ class PyGameTree:
         else:
             color = (255, 255, 255) # white
 
-        pygame.draw_line(self.screen, color, (x1,y1), (x2,y2), 2)
+        pygame.draw.line(self.screen, color, (x1,y1), (x2,y2), 2)
 
         # Finally, there is a recursive call
-        rand_angle = random.randin(10, 20)
+        rand_angle = random.randint(10, 20)
         self.draw_line_segment(x2, y2, theta - rand_angle, depth - 1)
         self.draw_line_segment(x2, y2, theta + rand_angle, depth - 1)
 
