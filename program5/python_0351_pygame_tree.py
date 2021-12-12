@@ -1,5 +1,5 @@
 import math
-
+import time
 import pygame
 import random
 
@@ -17,6 +17,25 @@ class PyGameTree:
         pygame.display.set_caption("Green Tree")
 
 
+    '''
+    pygame.event is event Queue
+    Q) What is event?
+    A) You move your mouse -> MOUSEMOTION event
+       You click your mouse -> MOUSEBUTTONDOWN & MOUSEBUTTONUP event
+    Q) What is Queue?
+    A) Queue is a first-in, first-out list.
+       You cannot insert / delete in the middle
+       
+    pygame.event.get() will take all events from the Pygame Event Queue
+    '''
+
+    def handle_events(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+
+
     def begin(self):
 
         # Step 1) init pygame
@@ -30,7 +49,13 @@ class PyGameTree:
         self.draw_line_segment(root_x, root_y, line_segment_angle, 12)
         # the function is a recursive function, so we pass in depth param - 12
 
+        # Step 3) refresh the screen
         pygame.display.update()
+
+        # Step 4) show the screen permanently
+        while True:
+            self.handle_events()
+
 
 
 
