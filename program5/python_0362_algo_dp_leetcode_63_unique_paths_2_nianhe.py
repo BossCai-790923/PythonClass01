@@ -1,10 +1,3 @@
-'''
-快速copy 过去，大致讲解下
-和范老师的0361一样。代码写得也是非常的干净
-
-'''
-
-
 class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid: list[list[int]]) -> int:
         arr = [[0 for _ in range(len(obstacleGrid[0]))] for _ in range(len(obstacleGrid))]
